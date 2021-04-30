@@ -1,9 +1,6 @@
 import time
-
-
-
-filename = 'bx-23806_1611131310900_1611191286231_1.gp'
-
+import glob
+import os
 
 def check_timestamp_validation(fpath):
     check_odd_flag = 0
@@ -72,14 +69,27 @@ def erase_timestamp_error_line(fpath, line_number):
 if __name__ == '__main__':
     check_flag = 1
 
-    while check_flag:
-        rtn = check_timestamp_validation(filename)
+    npz_file_path = glob.glob\
+        (os.path.join('/Users/jaeuklee/workspace/timestamp_validation_check', "*.gp"))
 
-        if rtn != 1:
-            print("Error line = ", rtn)
-            erase_timestamp_error_line(filename, rtn)
-        else:
-            print("This file is No Error")
-            check_flag = 0
+    for a in range(0, len(npz_file_path)):
+        npz_file_path_list = npz_file_path[a].split('/')
+        npz_file_path_len = len(npz_file_path_list)
+        # print(npz_file_path_list[npz_file_path_len - 1])
+        npz_file_name = npz_file_path_list[npz_file_path_len - 1]
+        print(npz_file_name)
+
+        rtn = check_timestamp_validation(npz_file_name)
+        print(npz_file_name, rtn)
+
+        # while check_flag:
+        #     rtn = check_timestamp_validation(npz_file_name)
+        #
+        #     if rtn != 1:
+        #         print("Error line = ", rtn)
+        #         # erase_timestamp_error_line(filename, rtn)
+        #     else:
+        #         print("This file is No Error")
+        #         check_flag = 0
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
