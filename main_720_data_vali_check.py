@@ -57,24 +57,29 @@ def final_data_size_10_secs_backup(file_path):
 
     print(len(barr))
 
-    bracket_line_number_list.append(0)
-
     for k in range(0, len(barr)):
         line_data = barr[k].decode('utf-8')
         print(line_data)
-        if len(line_data) > 4 and line_data[4] == '[':
+        print(len(line_data))
+        # print(line_data[0])
+        # print(line_data[1])
+        # print(line_data[2])
+        # print(line_data[3])
+
+        if len(line_data) > 1 and line_data[0] == '[':
             print("here")
             bracket_line_number_list.append(k)
             cnt_big_bracket += 1
     print(bracket_line_number_list)
-
+#len(bracket_line_number_list
     for i in range(0, len(bracket_line_number_list)):
-        print(i)
-        for z in range(i * 10, i * 10 + 10):
-            print(barr[z])
+        # print(i)
+        for z in range(i * 110, i * 110 + 110):
+            # print(barr[z])
+            # print(z)
             filterd_barr = barr[z].decode('utf-8')
             filterd_barr = filterd_barr[filterd_barr.find(','):]
-            print(filterd_barr)
+            # print(filterd_barr)
 
             if z < 10:
                 past_data.append(filterd_barr[0:11])
@@ -92,22 +97,22 @@ def final_data_size_10_secs_backup(file_path):
         p1 = set(past_data)
         c1 = set(current_data)
 
-        # print("")
-
         t1 = p1 | c1
         t1 = list(t1)
         t1.sort()
 
-        # print("t1 -------------", list(t1), len(list(t1)))
 
-        # print("")
     save_filtered_data.extend(t1)
     past_data = []
     current_data = []
     data_chunk_size_cnt = 0
     t1 = []
 
+    del save_filtered_data[0]
+    del save_filtered_data[0]
     print("TOTAL: ", save_filtered_data, len(save_filtered_data))
+
+
 
     return save_filtered_data
 
@@ -212,4 +217,4 @@ def data_size_240_filter(file_path):
 # file_name = all_file_path_glob
 
 save_filtered_secs10_600_data = final_data_size_10_secs_backup(all_file_path_glob)
-secs_10_600_data_augmentation_fixed_data(save_filtered_secs10_600_data, "192.168.0.66")
+secs_10_600_data_augmentation_fixed_data(save_filtered_secs10_600_data, "192.168.0.66_720")
