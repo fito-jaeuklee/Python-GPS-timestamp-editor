@@ -2,11 +2,12 @@ from tkinter import filedialog
 import os
 import glob
 
-# all_file_path_glob = glob.glob('/Users/jaeuklee/workspace/timestamp_validation_check/hangang_20210506/*.csv')
+all_file_path_glob = glob.glob('/Users/jaeuklee/workspace/timestamp_validation_check/2021_0517_TNT/*.csv')
+print(all_file_path_glob)
+
+# all_file_path_glob = filedialog.askopenfilename()
 # print(all_file_path_glob)
 
-all_file_path_glob = filedialog.askopenfilename()
-print(all_file_path_glob)
 # file_name = file_path.split('/')
 # print(file_name[5][:-4])
 # file_name = file_name[5][:-4]
@@ -216,5 +217,12 @@ def data_size_240_filter(file_path):
 # open_intersect_filtered_file_write_gps_left_data(save_filtered_720_data, file_name)
 # file_name = all_file_path_glob
 
-save_filtered_secs10_600_data = final_data_size_10_secs_backup(all_file_path_glob)
-secs_10_600_data_augmentation_fixed_data(save_filtered_secs10_600_data, "192.168.0.66_720")
+
+print(all_file_path_glob)
+for buf in all_file_path_glob:
+    save_filtered_secs10_600_data = final_data_size_10_secs_backup(buf)
+
+    file_name = buf.split('/')
+    print(file_name[6][:-4])
+    file_name = file_name[6][:-4]
+    secs_10_600_data_augmentation_fixed_data(save_filtered_secs10_600_data, file_name)
