@@ -2,7 +2,7 @@ from tkinter import filedialog
 import os
 import glob
 
-all_file_path_glob = glob.glob('/Users/jaeuklee/workspace/timestamp_validation_check/2021_0517_TNT/*.csv')
+all_file_path_glob = glob.glob('/Users/jaeuklee/workspace/timestamp_validation_check/TNT-0521/*.csv')
 print(all_file_path_glob)
 
 # all_file_path_glob = filedialog.askopenfilename()
